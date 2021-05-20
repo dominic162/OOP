@@ -58,6 +58,23 @@ class DynamicArray{
             return ;
         }
 
+        const void disp(){
+            for(int i = 0 ; i < size ; ++i){
+                cout<<arr[i]<<" ";
+            }
+        }
+
+        DynamicArray(const DynamicArray &d2){
+            this->size = d2.size;
+            this->capacity = d2.capacity;
+            this->arr = new int[capacity];
+
+            for(int i = 0 ; i < size ; ++i){
+                arr[i] = d2.arr[i];
+            }
+
+        }
+
         DynamicArray(){
             this->arr = new int[1] ;
             this->size = 0 ;
@@ -104,6 +121,8 @@ int main(){
         }
 
     }while(ch != '5');
+
+
 
     return 0;
 }
