@@ -24,7 +24,7 @@ class Poly{
 
             cout<<arr[0]<<endl;
 
-            return ;
+            return ; 
         }
 
         //set coeff
@@ -86,7 +86,7 @@ class Poly{
                 ++i;
             }
 
-            while( i < ans.capacity){
+            while( i < obj.capacity){
                 ans.set_coeff(i , obj.arr[i]);
                 ++i;
             }
@@ -117,9 +117,34 @@ class Poly{
                 ++i;
             }
 
-            while( i < ans.capacity){
+            while( i < obj.capacity){
                 ans.set_coeff(i , -1*obj.arr[i]);
                 ++i;
+            }
+
+            return ans;
+
+        }
+
+        // * operator overloaded
+        Poly operator*(const Poly &obj){
+
+            Poly ans;
+
+            int r = this->capacity + obj.capacity -1 ;
+            
+            ans.set_coeff(r - 1 , 0);
+
+            ans.print();
+
+            for( int i = 0 ; i < this->capacity ; ++i ){
+                
+                for( int j = 0 ; j < obj.capacity ; ++j ){
+
+                    ans.set_coeff( i + j , ans.arr[i+j] + (this->arr[i]) * (obj.arr[j]) );
+
+                }
+
             }
 
             return ans;
@@ -148,31 +173,46 @@ class Poly{
 int main(){
 
     Poly p1;
-    p1.set_coeff(4,9);
-    p1.set_coeff(3,3);
-    p1.set_coeff(0,1);
+    int n;
+    cout<<"Enter no of arguments in Polynomial 1: ";
+    cin>>n;
+
+    cout<<"Enter degree and its coefficient: ";
+
+    for(int i = 0 ; i < n ; ++i){
+        int d,cf;
+        cin>>d>>cf;
+        p1.set_coeff(d,cf);
+    }
 
     Poly p2 = p1;
-    p2.print();
+    //p2.print();
 
     Poly p3;
 
     p3 = p2;
 
-    p3.print();
+    //p3.print();
 
     Poly p4;
     p4.set_coeff(5,6);
     p4.set_coeff(2,8);
     p4.set_coeff(1,2);
 
-    p4.print();
+    //p4.print();
 
-    p3 = p1 + p4;
-    p3.print();
+    //p3 = p1 + p4;
+    //p3.print();
 
-    p3 = p4 - p1 + p1;
+    //p3 = p4 - p1 + p1;
 
+    //p3.print();
+
+    cout<<"Multiply of ";
+    p1.print();
+    p2.print();
+    cout<<"is ";
+    p3 = p1 * p2;
     p3.print();
 
     return 0;
